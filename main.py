@@ -8,11 +8,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow  # parse model object(s) into a JSON response
 from flask_restful import Api, Resource
 from werkzeug.utils import secure_filename
+from variables import *
 
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:1234@localhost/audiobar'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqlconnector://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
